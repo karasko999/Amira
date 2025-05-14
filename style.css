@@ -1,4 +1,4 @@
-/* الخلفية العامة */
+/* أساسيات التصميم المتجاوب */
 body {
     margin: 0;
     padding: 0;
@@ -9,84 +9,60 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1000px; /* لإضافة بعد ثلاثي */
+    touch-action: manipulation; /* لتحسين تفاعلات اللمس */
 }
 
-/* تصميم القلب */
+/* تقليل عدد القلوب وحجمها على الجوال */
 .heart {
     position: absolute;
-    width: 25px;
-    height: 25px;
-    background: linear-gradient(45deg, #64b5f6, #e3f2fd); /* تدرج أزرق-أبيض */
-    transform: rotate(45deg) translateZ(0); /* لتحسين الأداء */
-    border-radius: 5px;
+    width: 15px !important; /* تصغير الحجم */
+    height: 15px !important;
+    background: linear-gradient(45deg, #64b5f6, #e3f2fd);
+    transform: rotate(45deg);
     opacity: 0;
-    filter: drop-shadow(0 0 10px rgba(100, 181, 246, 0.7)); /* توهج أزرق */
-    animation: float 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 5px rgba(100, 181, 246, 0.5)); /* تقليل شدة التوهج */
+    animation: float 6s ease-in-out infinite;
 }
 
 .heart:before, .heart:after {
-    content: '';
-    width: 25px;
-    height: 25px;
-    background: inherit;
-    border-radius: 50%;
-    position: absolute;
-    filter: inherit;
+    width: 15px !important;
+    height: 15px !important;
 }
 
-.heart:before {
-    top: -12.5px;
-    left: 0;
-}
-
-.heart:after {
-    top: 0;
-    left: -12.5px;
-}
-
-/* تأثير الطفو ثلاثي الأبعاد */
+/* تبسيط الحركة للحفاظ على الأداء */
 @keyframes float {
-    0% {
+    0%, 100% {
         opacity: 0;
-        transform: rotate(45deg) translateY(100vh) scale(0.5) rotateX(0);
-    }
-    20% {
-        opacity: 0.9;
+        transform: rotate(45deg) translateY(100vh) scale(0.5);
     }
     50% {
-        transform: rotate(45deg) translateY(-50vh) scale(1.2) rotateX(180deg);
-    }
-    80% {
-        opacity: 0.9;
-    }
-    100% {
-        opacity: 0;
-        transform: rotate(45deg) translateY(-100vh) scale(0.5) rotateX(360deg);
+        opacity: 0.8;
+        transform: rotate(45deg) translateY(-20vh) scale(1);
     }
 }
 
-/* المحتوى النصي */
+/* تحسين النص للشاشات الصغيرة */
 .content {
-    text-align: center;
-    color: white;
-    z-index: 100;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(100, 181, 246, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    max-width: 80%;
+    padding: 15px !important;
+    max-width: 90% !important;
+    backdrop-filter: blur(5px);
 }
 
 .content h1 {
-    font-size: 2.8em;
-    margin-bottom: 15px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    font-size: 1.5em !important;
 }
 
 .content p {
-    font-size: 1.5em;
-    line-height: 1.6;
+    font-size: 1em !important;
+}
+
+/* تعديلات خاصة للشاشات الكبيرة */
+@media (min-width: 768px) {
+    .heart {
+        width: 25px !important;
+        height: 25px !important;
+    }
+    .content h1 {
+        font-size: 2.5em !important;
+    }
 }
