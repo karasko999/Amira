@@ -5,11 +5,14 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  perspective: 1000px;
 }
 
 .container {
   width: 200px;
   height: 200px;
+  transform: rotateX(15deg) rotateY(-15deg);
+  animation: float 3s ease-in-out infinite;
 }
 
 .heart path {
@@ -30,5 +33,14 @@ body {
   }
   50% {
     transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: rotateX(15deg) rotateY(-15deg) translateY(0);
+  }
+  50% {
+    transform: rotateX(15deg) rotateY(-15deg) translateY(-10px);
   }
 }
