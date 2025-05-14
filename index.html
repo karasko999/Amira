@@ -2,86 +2,10 @@
 <html>
 <head>
     <title>قلب خطي متوهج</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        
-        .heart {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            transform-style: preserve-3d;
-            animation: rotate 10s infinite linear;
-        }
-        
-        .line {
-            position: absolute;
-            background: white;
-            box-shadow: 0 0 10px #fff, 0 0 20px #ff00ff;
-        }
-        
-        @keyframes rotate {
-            0% { transform: rotateX(20deg) rotateY(0); }
-            100% { transform: rotateX(20deg) rotateY(360deg); }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="heart" id="heart"></div>
-    
-    <script>
-        const heart = document.getElementById('heart');
-        const lines = 36; // عدد خطوط القلب
-        
-        // إنشاء خطوط القلب
-        for (let i = 0; i < lines; i++) {
-            const angle = (i / lines) * Math.PI * 2;
-            
-            // الخط الأفقي
-            const hLine = document.createElement('div');
-            hLine.className = 'line';
-            hLine.style.width = '100px';
-            hLine.style.height = '2px';
-            hLine.style.transform = `
-                rotateY(${angle}rad)
-                translateZ(80px)
-            `;
-            heart.appendChild(hLine);
-            
-            // الخطوط المنحنية (لتشكيل القلب)
-            const curve1 = document.createElement('div');
-            curve1.className = 'line';
-            curve1.style.width = '2px';
-            curve1.style.height = '60px';
-            curve1.style.transform = `
-                rotateY(${angle}rad)
-                rotateZ(-0.8rad)
-                translateX(40px)
-                translateY(-30px)
-                translateZ(80px)
-            `;
-            heart.appendChild(curve1);
-            
-            const curve2 = document.createElement('div');
-            curve2.className = 'line';
-            curve2.style.width = '2px';
-            curve2.style.height = '60px';
-            curve2.style.transform = `
-                rotateY(${angle}rad)
-                rotateZ(0.8rad)
-                translateX(-40px)
-                translateY(-30px)
-                translateZ(80px)
-            `;
-            heart.appendChild(curve2);
-        }
-    </script>
+    <div class="heart-container" id="heart"></div>
+    <script src="script.js"></script>
 </body>
 </html>
