@@ -3,18 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Animated Heart Line</title>
+  <title>3D Heart Animation</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <svg viewBox="0 0 100 100" class="heart">
+      <defs>
+        <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ff4d4d" />
+          <stop offset="100%" stop-color="#990000" />
+        </linearGradient>
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#660000" />
+        </filter>
+      </defs>
       <path d="M10,30 
                A20,20 0 0,1 50,30 
                A20,20 0 0,1 90,30 
                Q90,60 50,90 
                Q10,60 10,30 Z" 
-            fill="none" stroke="red" stroke-width="2" />
+            fill="url(#heartGradient)" 
+            stroke="#ff0000" 
+            stroke-width="2"
+            filter="url(#shadow)" />
     </svg>
   </div>
   <script src="script.js"></script>
