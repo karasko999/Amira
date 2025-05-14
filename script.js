@@ -1,47 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('hearts-container');
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const heartCount = isMobile ? 20 : 40;
-    const colors = ['#e3f2fd', '#bbdefb', '#90caf9', '#64b5f6'];
-
-    function createHeart() {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        
-        const size = isMobile ? 20 : 30;
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        const xPos = Math.random() * 100;
-        const duration = Math.random() * 5 + 5;
-        const delay = Math.random() * 3;
-        const rotation = Math.random() * 360;
-
-        heart.style.width = `${size}px`;
-        heart.style.height = `${size}px`;
-        heart.style.left = `${xPos}vw`;
-        heart.style.bottom = `-30px`;
-        heart.style.animationDuration = `${duration}s`;
-        heart.style.animationDelay = `${delay}s`;
-        heart.style.setProperty('--color', color);
-
-        container.appendChild(heart);
-
-        setTimeout(() => {
-            heart.remove();
-            if (container.children.length < heartCount) createHeart();
-        }, (duration + delay) * 1000);
+    const linesContainer = document.querySelector('.lines-container');
+    const isMobile = window.innerWidth < 768;
+    const lineCount = isMobile ? 20 : 36;
+    
+    // إنشاء الخطوط المشعة
+    for (let i = 0; i < lineCount; i++) {
+        const line = document.createElement('div');
+        line.className = 'line';
+        line.style.transform = `rotate(${i * (360/lineCount)}deg)`;
+        line.style.animation = `line-rotate ${3 + Math.random() * 4}s infinite linear ${i * 0.1}s`;
+        linesContainer.appendChild(line);
     }
-
-    // بدء إنشاء القلوب
-    for (let i = 0; i < heartCount; i++) {
-        setTimeout(createHeart, i * 300);
-    }
-
-    // إضافة تفاعل عند النقر
-    document.addEventListener('click', (e) => {
-        if (container.children.length < heartCount + 5) {
-            for (let i = 0; i < 3; i++) {
-                createHeart();
-            }
-        }
+    
+    // إضافة تفاعل عند الحركة
+    document.addEventListener('mousemove', (e) => {
+        const heart = document.querySelector('.heart-3d');
+        const x = (e.clientX / window.innerWidth) * 50 - 25;
+        const y = (e.clientY / window.innerHeight) * 50 - 25;
+        heart.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
     });
+    
+    // نسخة للجوال
+    if (isMobile) {
+        let angle = 0;
+        setInterval(() => {
+            angle += 1;
+            const x = Math.sin(angle * Math.PI / 180) * 25;
+            const y = Math.cos(angle * Math.PI / 180) * 25;
+            document.querySelector('.heart-3d').style.transform = 
+                `rotateY(${x}deg) rotateX(${y}deg)`;
+        }, 50);
+    }
 });
