@@ -1,39 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const heart = document.querySelector('.wireframe-heart');
-    const linesCount = 24; // عدد الخطوط
+    const container = document.getElementById('heart');
+    const layers = 24; // عدد طبقات القلب
     
-    // إنشاء خطوط القلب
-    for (let i = 0; i < linesCount; i++) {
-        createHeartLine(i * (360 / linesCount));
-    }
-    
-    // إنشاء خط منحني للقلب
-    function createHeartLine(angle) {
-        // الخطوط الأفقية
-        const hLine = document.createElement('div');
-        hLine.className = 'line horizontal';
-        hLine.style.transform = `rotateY(${angle}deg) translateZ(50px)`;
-        hLine.style.animation = `glow ${2 + Math.random() * 3}s infinite ease-in-out`;
-        heart.appendChild(hLine);
+    function createHeartLayer(angle) {
+        // الخط السفلي للقلب
+        const bottomLine = document.createElement('div');
+        bottomLine.className = 'heart-line';
+        bottomLine.style.width = '120px';
+        bottomLine.style.height = '2px';
+        bottomLine.style.transform = `rotateY(${angle}rad) translateZ(100px)`;
         
-        // الخطوط المنحنية (لشكل القلب)
-        const curve1 = document.createElement('div');
-        curve1.className = 'line curve';
-        curve1.style.transform = `rotateY(${angle}deg) rotateZ(-45deg) translateX(25px) translateY(-20px) translateZ(50px)`;
-        curve1.style.animation = `glow ${3 + Math.random() * 2}s infinite ease-in-out`;
-        heart.appendChild(curve1);
+        // الجانب الأيسر للقلب
+        const leftCurve = document.createElement('div');
+        leftCurve.className = 'heart-line';
+        leftCurve.style.width = '2px';
+        leftCurve.style.height = '80px';
+        leftCurve.style.transform = `
+            rotateY(${angle}rad) 
+            rotateZ(-0.8rad) 
+            translateX(50px) 
+            translateY(-40px) 
+            translateZ(100px)
+        `;
         
-        const curve2 = document.createElement('div');
-        curve2.className = 'line curve';
-        curve2.style.transform = `rotateY(${angle}deg) rotateZ(45deg) translateX(-25px) translateY(-20px) translateZ(50px)`;
-        curve2.style.animation = `glow ${3 + Math.random() * 2}s infinite ease-in-out`;
-        heart.appendChild(curve2);
+        // الجانب الأيمن للقلب
+        const rightCurve = document.createElement('div');
+        rightCurve.className = 'heart-line';
+        rightCurve.style.width = '2px';
+        rightCurve.style.height = '80px';
+        rightCurve.style.transform = `
+            rotateY(${angle}rad) 
+            rotateZ(0.8rad) 
+            translateX(-50px) 
+            translateY(-40px) 
+            translateZ(100px)
+        `;
+        
+        container.appendChild(bottomLine);
+        container.appendChild(leftCurve);
+        container.appendChild(rightCurve);
     }
-    
-    // تفاعل مع حركة الماوس
-    document.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth) * 50 - 25;
-        const y = (e.clientY / window.innerHeight) * 50 - 25;
-        heart.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
-    });
+
+    // إنشاء جميع طبقات القلب
+    for (let i = 0; i < layers; i++) {
+        const angle = (i / layers) * Math.PI * 2;
+        createHeartLayer(angle);
+    }
 });
