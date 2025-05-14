@@ -1,6 +1,5 @@
 body {
     margin: 0;
-    padding: 0;
     overflow: hidden;
     background: #000;
     display: flex;
@@ -10,45 +9,23 @@ body {
     perspective: 1000px;
 }
 
-/* القلب الخطي */
-.wireframe-heart {
+.heart-container {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
     transform-style: preserve-3d;
-    animation: rotate-3d 12s infinite linear;
+    animation: rotate 15s infinite linear;
 }
 
-.wireframe-heart .line {
+.heart-line {
     position: absolute;
     background: #fff;
-    box-shadow: 0 0 10px #fff, 0 0 20px #ff00ff;
+    box-shadow: 0 0 8px #fff, 0 0 16px #ff69b4;
     transform-origin: center;
+    opacity: 0.9;
 }
 
-/* الخطوط الأفقية للقلب */
-.wireframe-heart .horizontal {
-    width: 100px;
-    height: 2px;
-    top: 50%;
-    left: 25px;
-}
-
-/* الخطوط المنحنية */
-.wireframe-heart .curve {
-    width: 2px;
-    height: 60px;
-    border-radius: 50%;
-}
-
-/* الحركة ثلاثية الأبعاد */
-@keyframes rotate-3d {
-    0% { transform: rotateX(20deg) rotateY(0); }
-    100% { transform: rotateX(20deg) rotateY(360deg); }
-}
-
-/* التألق */
-@keyframes glow {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 1; box-shadow: 0 0 15px #fff, 0 0 30px #ff00ff; }
+@keyframes rotate {
+    0% { transform: rotateX(15deg) rotateY(0); }
+    100% { transform: rotateX(15deg) rotateY(360deg); }
 }
