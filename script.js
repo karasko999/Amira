@@ -1,37 +1,38 @@
-const container = document.getElementById("heartContainer");
+let player;
 const musicBtn = document.getElementById("musicToggle");
-const ytplayer = document.getElementById("ytplayer");
-
 let isPlaying = true;
 
-// قلب 3D يتفاعل مع حركة الماوس
-document.addEventListener("mousemove", (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 30; // زاوية التدوير حول المحور Y
-  const y = (e.clientY / window.innerHeight - 0.5) * -30; // زاوية التدوير حول المحور X
-  container.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
-});
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player("player", {
+    height: "1",
+    width: "1",
+    videoId: "NRlNvauSHyY", // ID تاع الفيديو
+    playerVars: {
+      autoplay: 1,
+      loop: 1,
+      playlist: "NRlNvauSHyY",
+      controls: 0,
+      mute: 0,
+      modestbranding: 1,
+      iv_load_policy: 3,
+      rel: 0,
+    },
+    events: {
+      onReady: (event) => {
+        event.target.playVideo();
+      }
+    }
+  });
+}
 
-// زر تشغيل/إيقاف الموسيقى (يوتيوب iframe)
 musicBtn.addEventListener("click", () => {
   if (isPlaying) {
-    // إيقاف الفيديو عبر API
-    ytplayer.contentWindow.postMessage(
-      '{"event":"command","func":"pauseVideo","args":""}',
-      "*"
-    );
+    player.pauseVideo();
     musicBtn.textContent = "تشغيل الموسيقى";
     isPlaying = false;
   } else {
-    ytplayer.contentWindow.postMessage(
-      '{"event":"command","func":"playVideo","args":""}',
-      "*"
-    );
+    player.playVideo();
     musicBtn.textContent = "إيقاف الموسيقى";
     isPlaying = true;
   }
 });
-
-// إعداد API لاعب يوتيوب لتلقي الأوامر
-window.onYouTubeIframeAPIReady = function () {
-  // لا شيء مطلوب هنا لاحتياجاتنا
-};
