@@ -1,4 +1,3 @@
-/* إعدادات عامة */
 body {
   background: url("background.jpg") no-repeat center center fixed;
   background-size: cover;
@@ -14,51 +13,36 @@ body {
   overflow: hidden;
 }
 
-/* قلب 3D يدور */
 .container {
   width: 250px;
   height: 250px;
   transform-style: preserve-3d;
-  animation: float 3s ease-in-out infinite;
+  animation: rotateHeart 8s linear infinite;
   transition: transform 0.1s ease;
 }
 
-/* مسار القلب يتوهج ويتحرك */
+@keyframes rotateHeart {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
 .heart path {
   stroke-dasharray: 300;
   stroke-dashoffset: 300;
-  animation: draw 2s ease forwards, pulseHeart 1s ease-in-out 2s infinite;
+  animation: draw 2s ease forwards;
   filter: drop-shadow(0 0 15px #39ff14);
 }
 
-/* تحريك الطفو */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* رسم الخط */
 @keyframes draw {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-/* نبض القلب */
-@keyframes pulseHeart {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
-  }
-}
-
-/* النص */
 .title {
   margin-top: 20px;
   font-size: 26px;
@@ -71,18 +55,15 @@ body {
   opacity: 0;
 }
 
-/* القلب الصغير المجاور للنص */
 .glow-heart {
   width: 28px;
   height: 28px;
   stroke-linejoin: round;
   stroke-linecap: round;
   animation: rotate 3s linear infinite;
-  filter:
-    drop-shadow(0 0 6px #00aaff);
+  filter: drop-shadow(0 0 6px #00aaff);
 }
 
-/* دوران القلب الصغير */
 @keyframes rotate {
   from {
     transform: rotate(0deg);
@@ -92,39 +73,25 @@ body {
   }
 }
 
-/* تأثير ألوان النيون النص */
 @keyframes neonCycle {
   0% {
     color: #00aaff;
-    text-shadow:
-      0 0 6px #00aaff,
-      0 0 12px #00aaff,
-      0 0 18px #00aaff;
+    text-shadow: 0 0 6px #00aaff, 0 0 12px #00aaff;
   }
   33% {
     color: #ff0033;
-    text-shadow:
-      0 0 6px #ff0033,
-      0 0 12px #ff0033,
-      0 0 18px #ff0033;
+    text-shadow: 0 0 6px #ff0033, 0 0 12px #ff0033;
   }
   66% {
     color: #ffffff;
-    text-shadow:
-      0 0 6px #ffffff,
-      0 0 12px #ffffff,
-      0 0 18px #ffffff;
+    text-shadow: 0 0 6px #ffffff, 0 0 12px #ffffff;
   }
   100% {
     color: #00aaff;
-    text-shadow:
-      0 0 6px #00aaff,
-      0 0 12px #00aaff,
-      0 0 18px #00aaff;
+    text-shadow: 0 0 6px #00aaff, 0 0 12px #00aaff;
   }
 }
 
-/* نبض النص */
 @keyframes pulseText {
   0%, 100% {
     transform: scale(1);
@@ -136,14 +103,12 @@ body {
   }
 }
 
-/* ظهور النص */
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
 }
 
-/* زر التحكم */
 #musicToggle {
   margin-top: 25px;
   padding: 10px 25px;
@@ -155,7 +120,6 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s ease;
-  user-select: none;
 }
 
 #musicToggle:hover {
