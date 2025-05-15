@@ -3,23 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>3D Neon Heart & Music</title>
+  <title>Amira & Karasko</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- تضمين فيديو يوتيوب مخفي -->
-  <iframe 
-    id="ytplayer"
-    width="1" 
-    height="1"
-    src="https://www.youtube.com/embed/NRlNvauSHyY?autoplay=1&loop=1&playlist=NRlNvauSHyY&controls=0&mute=0&modestbranding=1&iv_load_policy=3&rel=0" 
-    frameborder="0" 
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
+  <div id="player"></div>
 
-  <div class="container" id="heartContainer" aria-label="قلب ثلاثي الأبعاد يدور">
-    <svg viewBox="0 0 100 100" class="heart" role="img" aria-hidden="true">
+  <div class="container" id="heartContainer">
+    <svg viewBox="0 0 100 100" class="heart">
       <defs>
         <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stop-color="#39ff14" />
@@ -43,14 +34,8 @@
     </svg>
   </div>
 
-  <h1 class="title" aria-label="Amira and Karasko is the True Love">
-    <svg
-      class="glow-heart"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-    >
+  <h1 class="title">
+    <svg class="glow-heart" viewBox="0 0 24 24">
       <path
         d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
            2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
@@ -65,10 +50,9 @@
     Amira and Karasko is the True Love
   </h1>
 
-  <button id="musicToggle" aria-label="تشغيل أو إيقاف الموسيقى">
-    إيقاف الموسيقى
-  </button>
+  <button id="musicToggle">إيقاف الموسيقى</button>
 
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="script.js"></script>
 </body>
 </html>
