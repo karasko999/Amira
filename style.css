@@ -1,4 +1,3 @@
-/* الأساسيات */
 body {
     margin: 0;
     padding: 0;
@@ -10,47 +9,45 @@ body {
     align-items: center;
     color: white;
     position: relative;
+    background: #0a0a2a; /* خلفية داكنة لتظهر الألوان الزرقاء */
 }
 
-/* خلفية الصورة */
 .background-image {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('background.jpg'); /* سيتم استبدالها بصورتك */
+    background-image: url('background.jpg');
     background-size: cover;
     background-position: center;
     z-index: -1;
-    filter: brightness(0.7);
+    filter: brightness(0.7) contrast(1.2);
 }
 
-/* بقية التنسيقات... */
 .love-message {
     position: relative;
     z-index: 100;
     font-size: 3.5rem;
     text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #0066ff; /* أزرق مشبع */
+    text-shadow: 
+        0 0 15px rgba(0, 102, 255, 0.7),
+        0 0 30px rgba(0, 102, 255, 0.4);
     animation: float 3s ease-in-out infinite;
-}
-
-/* ... (ابقِ بقية التنسيقات كما هي في الإصدار السابق) */
-
-.love-message {
-    position: relative;
-    z-index: 100;
-    font-size: 3.5rem;
-    color: #d23669;
-    text-align: center;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    animation: float 3s ease-in-out infinite;
+    font-weight: bold;
+    background: linear-gradient(to right, #0066ff, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0 20px;
+    border-radius: 15px;
 }
 
 .heart {
     display: inline-block;
     animation: pulse 1.5s infinite alternate;
+    filter: drop-shadow(0 0 8px #0066ff);
+    font-size: 1.2em;
 }
 
 @keyframes float {
@@ -60,19 +57,20 @@ body {
 
 @keyframes pulse {
     from { transform: scale(1); }
-    to { transform: scale(1.3); }
+    to { transform: scale(1.4); }
 }
 
 .floating-heart {
     position: absolute;
-    font-size: 1.5rem;
-    opacity: 0.6;
+    font-size: 1.8rem;
+    opacity: 0.8;
     animation: float-heart linear infinite;
     user-select: none;
+    filter: drop-shadow(0 0 5px #00aaff);
 }
 
 @keyframes float-heart {
-    to { transform: translateY(-100vh); }
+    to { transform: translateY(-100vh) rotate(360deg); }
 }
 
 #music-btn {
@@ -81,18 +79,36 @@ body {
     left: 50%;
     transform: translateX(-50%);
     padding: 12px 25px;
-    background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+    background: linear-gradient(to right, #0066ff, #00aaff);
     color: white;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     z-index: 100;
-    box-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
-    font-size: 1rem;
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.7);
+    font-size: 1.1rem;
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 #music-btn:hover {
     transform: translateX(-50%) scale(1.05);
-    box-shadow: 0 0 25px #ff1493;
+    box-shadow: 0 0 30px #0066ff;
+    background: linear-gradient(to right, #00aaff, #0066ff);
+}
+
+/* للتكيف مع الجوال */
+@media (max-width: 768px) {
+    .love-message {
+        font-size: 2.5rem;
+    }
+    
+    .floating-heart {
+        font-size: 1.5rem;
+    }
+    
+    #music-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
 }
