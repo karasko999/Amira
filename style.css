@@ -1,127 +1,117 @@
+/* الأساسيات */
+:root {
+    --primary-color: #ff2d75;
+    --secondary-color: #ff8fab;
+    --dark-bg: #0f0c29;
+    --gradient-bg: radial-gradient(circle, var(--dark-bg) 0%, #302b63 100%);
+    --font-primary: 'Tajawal', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  background: url("background.jpg") no-repeat center center fixed;
-  background-size: cover;
-  margin: 0;
-  height: 100vh;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  perspective: 1000px;
-  overflow: hidden;
+    overflow: hidden;
+    background: var(--gradient-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    perspective: 1000px;
+    font-family: var(--font-primary);
+    color: white;
 }
 
-.container {
-  width: 250px;
-  height: 250px;
-  transform-style: preserve-3d;
-  animation: rotateHeart 8s linear infinite;
-  transition: transform 0.1s ease;
+/* جوهرة القلب */
+.gem-heart {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    transform-style: preserve-3d;
+    animation: rotate 20s infinite linear;
 }
 
-@keyframes rotateHeart {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
+.facet {
+    position: absolute;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 45, 117, 0.25), 
+        rgba(255, 143, 171, 0.35)
+    );
+    backdrop-filter: blur(6px);
+    box-shadow: 
+        inset 0 0 12px rgba(255,255,255,0.3),
+        0 0 20px rgba(255, 45, 117, 0.5);
+    border-radius: 15%;
+    transform-origin: center;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.heart path {
-  stroke-dasharray: 300;
-  stroke-dashoffset: 300;
-  animation: draw 2s ease forwards;
-  filter: drop-shadow(0 0 15px #39ff14);
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
+/* النص والعنوان */
 .title {
-  margin-top: 20px;
-  font-size: 26px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  animation: fadeIn 2s ease forwards, neonCycle 6s infinite, pulseText 1.5s ease-in-out infinite;
-  opacity: 0;
+    position: absolute;
+    top: 20%;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 0 0 15px var(--primary-color);
+    opacity: 0.9;
+    animation: text-glow 3s infinite alternate;
 }
 
-.glow-heart {
-  width: 28px;
-  height: 28px;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  animation: rotate 3s linear infinite;
-  filter: drop-shadow(0 0 6px #00aaff);
+/* زر الموسيقى */
+#music-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 25px;
+    background: linear-gradient(
+        to right, 
+        var(--primary-color), 
+        var(--secondary-color)
+    );
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 0 20px rgba(255, 45, 117, 0.6);
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
 }
 
+#music-btn:hover {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 0 30px var(--primary-color);
+}
+
+#music-btn .icon {
+    font-size: 1.3rem;
+}
+
+/* الحركات */
 @keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    0% { transform: rotateX(-15deg) rotateY(0); }
+    100% { transform: rotateX(-15deg) rotateY(360deg); }
 }
 
-@keyframes neonCycle {
-  0% {
-    color: #00aaff;
-    text-shadow: 0 0 6px #00aaff, 0 0 12px #00aaff;
-  }
-  33% {
-    color: #ff0033;
-    text-shadow: 0 0 6px #ff0033, 0 0 12px #ff0033;
-  }
-  66% {
-    color: #ffffff;
-    text-shadow: 0 0 6px #ffffff, 0 0 12px #ffffff;
-  }
-  100% {
-    color: #00aaff;
-    text-shadow: 0 0 6px #00aaff, 0 0 12px #00aaff;
-  }
+@keyframes pulse {
+    0%, 100% { opacity: 0.7; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.05); }
 }
 
-@keyframes pulseText {
-  0%, 100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 10px #fff);
-  }
-  50% {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 20px #fff);
-  }
+@keyframes text-glow {
+    from { text-shadow: 0 0 10px var(--primary-color); }
+    to { text-shadow: 0 0 20px var(--secondary-color); }
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-#musicToggle {
-  margin-top: 25px;
-  padding: 10px 25px;
-  background: rgba(255, 0, 0, 0.8);
-  border: none;
-  border-radius: 12px;
-  color: white;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#musicToggle:hover {
-  background: rgba(255, 0, 0, 1);
-}
+/* التكيف مع الجوال */
+@media (max-width: 768px)
