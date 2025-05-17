@@ -1,58 +1,29 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Amira & Karasko</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جوهرة القلب المتلألئة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="player"></div>
-
-  <div class="container" id="heartContainer">
-    <svg viewBox="0 0 100 100" class="heart">
-      <defs>
-        <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#39ff14" />
-          <stop offset="100%" stop-color="#007700" />
-        </linearGradient>
-        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#39ff14" flood-opacity="0.8"/>
-        </filter>
-      </defs>
-      <path
-        d="M10,30 
-           A20,20 0 0,1 50,30 
-           A20,20 0 0,1 90,30 
-           Q90,60 50,90 
-           Q10,60 10,30 Z"
-        fill="url(#heartGradient)"
-        stroke="#39ff14"
-        stroke-width="3"
-        filter="url(#glow)"
-      />
-    </svg>
-  </div>
-
-  <h1 class="title">
-    <svg class="glow-heart" viewBox="0 0 24 24">
-      <path
-        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
-           2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
-           C13.09 3.81 14.76 3 16.5 3
-           19.58 3 22 5.42 22 8.5
-           c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-        fill="none"
-        stroke="#00aaff"
-        stroke-width="1.5"
-      />
-    </svg>
-    Amira and Karasko is the True Love
-  </h1>
-
-  <button id="musicToggle">إيقاف الموسيقى</button>
-
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script src="script.js"></script>
+    <div class="container">
+        <div class="gem-heart" id="heart"></div>
+        <div class="title">قـلـبـي 💎</div>
+    </div>
+    
+    <audio id="music" loop>
+        <source src="assets/music.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button id="music-btn">
+        <span class="icon">🎵</span>
+        <span class="text">تشغيل الموسيقى</span>
+    </button>
+    
+    <script src="script.js"></script>
 </body>
 </html>
