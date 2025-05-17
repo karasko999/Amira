@@ -1,14 +1,42 @@
+/* الأساسيات */
 body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    font-family: 'Arial', sans-serif;
+    color: white;
+    position: relative;
 }
+
+/* خلفية الصورة */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background.jpg'); /* سيتم استبدالها بصورتك */
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    filter: brightness(0.7);
+}
+
+/* بقية التنسيقات... */
+.love-message {
+    position: relative;
+    z-index: 100;
+    font-size: 3.5rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ... (ابقِ بقية التنسيقات كما هي في الإصدار السابق) */
 
 .love-message {
     position: relative;
