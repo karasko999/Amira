@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💙 Mon Klba</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="loader-screen" id="loaderScreen">
+    <div class="loader-heart-container">
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-heart">💙</div>
+    </div>
+    <div class="loader-text-main">Loading...</div>
+    <div class="loader-text-sub">✨ For You ✨</div>
+    <div class="loader-bar-container">
+        <div class="loader-bar-fill" id="loaderBarFill"></div>
+    </div>
+    <div class="loader-percent" id="loaderPercent">0%</div>
+</div>
+
+<div class="waves">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+</div>
+
+<div id="starsContainer"></div>
+
+<div class="progress-bar" id="progressBar" style="width: 25%;"></div>
+
+<div class="controls">
+    <button class="control-btn" id="musicToggle">
+        <span class="icon">🎵</span>
+        <span class="text">تشغيل</span>
+    </button>
+    <button class="control-btn" id="bgToggle">
+        <span class="icon">🖼️</span>
+        <span class="text">Backgrund</span>
+    </button>
+</div>
+
+<a href="question.html" class="back-btn">
+    <span class="icon">←</span>
+    <span class="text">رجوع</span>
+</a>
+
+<div class="heart-counter">
+    <span class="icon">❤️</span>
+    <span id="heartCount">0</span>
+</div>
+<div class="day-counter">
+    <span class="icon">📅</span>
+    <span id="dayCount">0</span> يوم معاً
+</div>
+
+<div class="page" style="background-image: url('klba.jpg');">
+    <span class="heart-interactive" id="heartMain">💙</span>
+    <h1 class="big-word glow-effect" id="typingTitle">
+        <span class="particles-text" id="particlesText"></span>
+    </h1>
+
+    <div class="image-frame">
+        <img src="klba.jpg" alt="Klba" />
+    </div>
+
+    <div class="gallery">
+        <img src="klba.jpg" alt="Photo 1" />
+        <img src="klba.jpg" alt="Photo 2" />
+        <img src="klba.jpg" alt="Photo 3" />
+    </div>
+
+    <a href="page2.html" class="btn btn-icon">
+        <span class="icon">➜</span>
+        <span class="text">التالي</span>
+        <span class="ripple"></span>
+    </a>
+</div>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="music/background.mp3" type="audio/mpeg" />
+</audio>
+<audio id="clickSound" preload="auto">
+    <source src="sounds/click.mp3" type="audio/mpeg" />
+</audio>
+<audio id="heartSound" preload="auto">
+    <source src="sounds/heart.mp3" type="audio/mpeg" />
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>

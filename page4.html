@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💙 Nti Klchi</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ===== شاشة التحميل ===== -->
+<div class="loader-screen" id="loaderScreen">
+    <div class="loader-heart-container">
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-heart">💙</div>
+    </div>
+    <div class="loader-text-main">Loading...</div>
+    <div class="loader-text-sub">✨ For You ✨</div>
+    <div class="loader-bar-container">
+        <div class="loader-bar-fill" id="loaderBarFill"></div>
+    </div>
+    <div class="loader-percent" id="loaderPercent">0%</div>
+</div>
+
+<!-- ===== نجوم وورود ===== -->
+<div id="starsContainer"></div>
+<div id="flowersContainer"></div>
+
+<!-- ===== شريط التقدم ===== -->
+<div class="progress-bar" id="progressBar" style="width: 100%;"></div>
+
+<!-- ===== أزرار التحكم ===== -->
+<div class="controls">
+    <button class="control-btn" id="musicToggle">
+        <span class="icon">🎵</span>
+        <span class="text">تشغيل</span>
+    </button>
+    <button class="control-btn" id="bgToggle">
+        <span class="icon">🖼️</span>
+        <span class="text">Background</span>
+    </button>
+</div>
+
+<!-- ===== زر الرجوع ===== -->
+<a href="page3.html" class="back-btn">
+    <span class="icon">←</span>
+    <span class="text">رجوع</span>
+</a>
+
+<!-- ===== عدادات ===== -->
+<div class="heart-counter">
+    <span class="icon">❤️</span>
+    <span id="heartCount">0</span>
+</div>
+<div class="day-counter">
+    <span class="icon">📅</span>
+    <span id="dayCount">0</span> يوم معاً
+</div>
+
+<!-- ===== الصفحة مع فيديو خلفية ===== -->
+<div class="page page-video">
+
+    <!-- فيديو الخلفية -->
+    <video autoplay muted loop playsinline>
+        <source src="love.mp4" type="video/mp4" />
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+    </video>
+
+    <!-- الطبقة الشفافة فوق الفيديو -->
+    <div class="video-overlay"></div>
+
+    <!-- المحتوى -->
+    <div class="content">
+        <span class="heart-interactive" id="heartMain">💙</span>
+        <h1 class="big-word glow-effect" id="typingTitle">
+            <span class="particles-text" id="particlesText"></span>
+        </h1>
+
+        <div class="greeting-card">
+            <h3>💌 For Allea</h3>
+            <p>
+                "NTI Frkha Tey W nbghik w NTI t3rfi W ana n3rf Bli 3ch9na Mchi Fike W mn9dch nhder bzaff NTI terfi bli nbghik"
+            </p>
+        </div>
+
+        <p class="love-big">💙 Love You Fo Avr 💙</p>
+
+        <div class="gallery">
+            <img src="love.jpg" alt="Photo 1" />
+            <img src="allea.jpg" alt="Photo 2" />
+            <img src="allea2.jpg" alt="Photo 3" />
+        </div>
+    </div>
+</div>
+
+<!-- ===== صوتيات ===== -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="music/background.mp3" type="audio/mpeg" />
+</audio>
+<audio id="clickSound" preload="auto">
+    <source src="sounds/click.mp3" type="audio/mpeg" />
+</audio>
+<audio id="heartSound" preload="auto">
+    <source src="sounds/heart.mp3" type="audio/mpeg" />
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qestion For You </title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        .question-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #0a0e27, #1a1a5e, #0a0e27);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 40px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .question-box .big-heart {
+            font-size: 70px;
+            display: block;
+            animation: loaderHeartBeat 1.5s ease-in-out infinite;
+        }
+
+        .question-box h1 {
+            font-size: 28px;
+            color: #ffffff;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .question-box .user-name {
+            color: #64b5f6;
+            font-weight: 700;
+        }
+
+        .question-box .question-text {
+            font-size: 26px;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 20px 0 30px;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .answer-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            min-height: 80px;
+        }
+
+        .btn-yes {
+            padding: 18px 50px;
+            border-radius: 60px;
+            border: none;
+            background: linear-gradient(135deg, #1e88e5, #1565c0);
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 30px rgba(30, 136, 229, 0.3);
+            min-width: 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-yes::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 60%);
+            animation: btnRipple 4s linear infinite;
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .btn-yes:hover::after {
+            opacity: 1;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 50px rgba(30, 136, 229, 0.5);
+        }
+
+        .btn-no {
+            padding: 18px 50px;
+            border-radius: 60px;
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            position: relative;
+        }
+
+        .btn-no:hover {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: rgba(255, 107, 107, 0.5);
+        }
+
+        .no-message {
+            color: #ff6b6b;
+            font-size: 18px;
+            margin-top: 15px;
+            display: none;
+            animation: shake 0.5s ease;
+        }
+
+        .no-message.show {
+            display: block;
+        }
+
+        .particle-bg {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(30, 136, 229, 0.06), transparent);
+            animation: floatParticle linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) translateX(0) scale(0.5); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) translateX(100px) scale(1.2); opacity: 0; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .love-message {
+            color: #64b5f6;
+            font-size: 18px;
+            margin-top: 15px;
+            display: none;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .love-message.show {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes btnRipple {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 600px) {
+            .question-box { padding: 30px 20px; }
+            .question-box h1 { font-size: 22px; }
+            .question-box .question-text { font-size: 20px; }
+            .btn-yes, .btn-no { font-size: 18px; padding: 14px 30px; min-width: 90px; }
+            .answer-buttons { gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="question-page" id="questionPage">
+    <div id="particlesContainer"></div>
+
+    <div class="question-box">
+        <span class="big-heart">💙</span>
+        <h1>مرحباً <span class="user-name" id="userName">حبيبتي</span> 💕</h1>
+
+        <div class="question-text">
+            ❤️ Do You Love Me؟ ❤️
+        </div>
+
+        <div class="answer-buttons">
+            <button class="btn-yes" id="btnYes">Yes💖</button>
+            <button class="btn-no" id="btnNo">No 😢</button>
+        </div>
+
+        <div class="no-message" id="noMessage">Nti Tbghini A frkha! 💙</div>
+        <div class="love-message" id="loveMessage">💙Ana Tani! 💙</div>
+    </div>
+</div>
+
+<audio id="clickSound" preload="auto">
+    <source src="data:audio/mpeg;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAA...">
+</audio>
+<audio id="heartSound" preload="auto">
+    <source src="data:audio/mpeg;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAA...">
+</audio>
+
+<script>
+    // ===== جسيمات =====
+    function createParticles() {
+        const container = document.getElementById('particlesContainer');
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle-bg';
+            const size = 30 + Math.random() * 80;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDuration = (15 + Math.random() * 25) + 's';
+            p.style.animationDelay = (Math.random() * 15) + 's';
+            container.appendChild(p);
+        }
+    }
+    createParticles();
+
+    // ===== عرض اسم المستخدم =====
+    const userName = localStorage.getItem('userName') || 'حبيبتي';
+    document.getElementById('userName').textContent = userName;
+
+    // ===== نظام الأسئلة =====
+    const btnYes = document.getElementById('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    const noMessage = document.getElementById('noMessage');
+    const loveMessage = document.getElementById('loveMessage');
+
+    let yesSize = 1;
+    let noClickCount = 0;
+
+    // زر "لا"
+    btnNo.addEventListener('click', function() {
+        noClickCount++;
+        const clickSound = document.getElementById('clickSound');
+        if (clickSound) {
+            clickSound.currentTime = 0;
+            clickSound.play().catch(() => {});
+        }
+
+        noMessage.classList.add('show');
+        setTimeout(() => {
+            noMessage.classList.remove('show');
+        }, 1500);
+
+        // تكبير زر "نعم"
+        yesSize += 0.25;
+        btnYes.style.transform = `scale(${yesSize})`;
+        btnYes.style.boxShadow = `0 8px 50px rgba(30, 136, 229, ${0.3 + yesSize * 0.05})`;
+
+        // تغيير لون زر "لا"
+        const colors = ['#ff6b6b', '#ff9f43', '#feca57', '#ff6b6b'];
+        btnNo.style.borderColor = colors[noClickCount % colors.length];
+        btnNo.style.color = colors[noClickCount % colors.length];
+
+        // هروب زر "لا"
+        if (noClickCount > 5) {
+            btnNo.style.position = 'relative';
+            const maxX = 150;
+            const maxY = 80;
+            const x = (Math.random() - 0.5) * maxX * 2;
+            const y = (Math.random() - 0.5) * maxY * 2;
+            btnNo.style.transform = `translate(${x}px, ${y}px)`;
+            btnNo.style.transition = 'all 0.3s ease';
+        }
+
+        // اختفاء زر "لا"
+        if (noClickCount > 10) {
+            btnNo.style.opacity = '0';
+            btnNo.style.pointerEvents = 'none';
+            btnNo.style.transition = 'all 0.5s ease';
+        }
+    });
+
+    // زر "نعم"
+    btnYes.addEventListener('click', function() {
+        const heartSound = document.getElementById('heartSound');
+        if (heartSound) {
+            heartSound.currentTime = 0;
+            heartSound.play().catch(() => {});
+        }
+
+        // إظهار رسالة الحب
+        loveMessage.classList.add('show');
+
+        // انفجار قلوب
+        const emojis = ['❤️', '💙', '💖', '💗', '💕', '💝', '✨', '💫', '🌟'];
+        const rect = this.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+
+        for (let i = 0; i < 40; i++) {
+            const burst = document.createElement('div');
+            burst.className = 'heart-burst';
+            burst.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            const angle = (Math.PI * 2 * i) / 40 + Math.random() * 0.3;
+            const distance = 50 + Math.random() * 250;
+            const tx = Math.cos(angle) * distance;
+            const ty = Math.sin(angle) * distance - 40;
+            burst.style.cssText = `
+                position: fixed;
+                left: ${cx}px;
+                top: ${cy}px;
+                --tx: ${tx}px;
+                --ty: ${ty}px;
+                font-size: ${20 + Math.random() * 45}px;
+                pointer-events: none;
+                z-index: 9999;
+                animation: burstUp 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            `;
+            document.body.appendChild(burst);
+            setTimeout(() => burst.remove(), 1800);
+        }
+
+        setTimeout(() => {
+            window.location.href = 'page1.html';
+        }, 2000);
+    });
+
+    // منع الضغط على "لا"
+    btnNo.addEventListener('mouseenter', function() {
+        if (noClickCount < 5) {
+            yesSize += 0.1;
+            btnYes.style.transform = `scale(${yesSize})`;
+            btnYes.style.transition = 'all 0.3s ease';
+        }
+    });
+
+    // ===== أنيميشن burst =====
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `
+        .heart-burst {
+            position: fixed;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: burstUp 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes burstUp {
+            0% { transform: translate(0, 0) scale(0.3) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(1.5) rotate(720deg); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(styleSheet);
+</script>
+
+</body>
+</html>

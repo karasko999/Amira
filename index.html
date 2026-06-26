@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💙 For You</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ===== شاشة التحميل ===== -->
+<div class="loader-screen" id="loaderScreen">
+    <div class="loader-heart-container">
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-heart">💙</div>
+    </div>
+    <div class="loader-text-main">Loading...</div>
+    <div class="loader-text-sub">✨ For You ✨</div>
+    <div class="loader-bar-container">
+        <div class="loader-bar-fill" id="loaderBarFill"></div>
+    </div>
+    <div class="loader-percent" id="loaderPercent">0%</div>
+</div>
+
+<!-- ===== صفحة Login ===== -->
+<div class="login-page" id="loginPage">
+    <div id="particlesContainer"></div>
+
+    <div class="login-box">
+        <span class="heart-icon">💙</span>
+        <h1>Dev Karasko</h1>
+        <p>✨ Ktbi Ismk w la date ta3na ✨</p>
+
+        <div class="input-group">
+            <input type="text" id="nameInput" placeholder="👤 name..." maxlength="20" autofocus />
+            <div class="input-line"></div>
+        </div>
+
+        <!-- حقل التاريخ - المستخدمة تكتبه مثل كلمة السر -->
+        <div class="input-group">
+            <input type="text" id="dateInput" placeholder="📅 اكتبي التاريخ " maxlength="10" />
+            <div class="input-line"></div>
+        </div>
+
+        <button class="btn-login" id="loginBtn">
+            <span class="btn-text">💖 Go</span>
+            <span class="btn-icon">✨</span>
+        </button>
+
+        <div class="error-msg" id="errorMsg">⚠️ Ktbi A frkha w la date sa7!</div>
+        
+        <!-- مؤشر الموسيقى -->
+        <div class="music-indicator-login" id="musicIndicator">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <!-- عرض عدد الأيام -->
+        <div style="margin-top: 20px; color: rgba(255,255,255,0.25); font-size: 13px; letter-spacing: 1px; font-weight: 300;">
+            📅 <span id="loginDayCount">0</span>wenta Khrjti meaya
+        </div>
+    </div>
+</div>
+
+<!-- ===== صوتيات ===== -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="music/background.mp3" type="audio/mpeg" />
+</audio>
+<audio id="clickSound" preload="auto">
+    <source src="sounds/click.mp3" type="audio/mpeg" />
+</audio>
+<audio id="heartSound" preload="auto">
+    <source src="sounds/heart.mp3" type="audio/mpeg" />
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>
